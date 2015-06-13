@@ -75,7 +75,7 @@ int rec(int level, std::vector<string> curr_mat, int myx, int myy, int opx, int 
 	//std::vector<string> th = curr_mat;
 	int ret;
 	if(level>10)
-		return 1;
+		return 0;
 	if(level%2==0)
 	{
 		int i;
@@ -233,7 +233,7 @@ int main(int argc, char *argv[])
 	thisopx=opx;
 	thisopy=opy;
 
-	int savex, savey;
+	int savex=-1, savey=-1;
 
 	mat[opx][opy]='2';
 
@@ -241,7 +241,7 @@ int main(int argc, char *argv[])
 	{
 		if(isonboard(myx+dx[i],myy+dy[i]) && myx+dx[i]==opx && myy+dy[i]==opy)
 		{
-			freopen("move.txt","w",stdout);
+			//freopen("move.txt","w",stdout);
 			myx=myx+dx[i];
 			baptize(myx);
 			myy++;
@@ -257,12 +257,28 @@ int main(int argc, char *argv[])
 		{
 			if(rec(1,mat,myx+dx[i],myy+dy[i],opx,opy)==1)
 			{
-				freopen("move.txt","w",stdout);
+				//freopen("move.txt","w",stdout);
 				savex=myx+dx[i]; savey=myy+dy[i];
 				myx=myx+dx[i];
 				baptize(myx);
 				
 				cout<<myx<<" "<<myy+dy[i]+1;
+				break;
+			}
+		}
+	}
+
+	if(savex==-1 && savey==-1)
+	{
+		fl(i,0,8)
+		{
+			if(issafe(mat,myx+dx[i],myy+dy[i],opx,opy))
+			{
+				savex=myx+dx[i];
+				savey=myy+dy[i];
+				myx=myx+dx[i];
+				baptize(myx);
+				cout<<myx<<" "<<myy+dy[i]+!;
 				break;
 			}
 		}
