@@ -418,10 +418,8 @@ int main(int argc, char *argv[])
 		if(myx==2 && myy==2)
 			flag=0;
 		mat[myx][myy]='1';
-		int savex=myx;
-		int savey=myy;
 		baptize(myx);
-		myy++;
+		myy--;
 		cout<<myx<<" "<<myy;
 		freopen("out.txt","w",stdout);
 		cout<<n;
@@ -434,7 +432,6 @@ int main(int argc, char *argv[])
 			}
 			nline;
 		}
-		cout<<savex<<" "<<savey;nline;
 		cout<<flag;
 		nline;
 		return 0;
@@ -445,10 +442,8 @@ int main(int argc, char *argv[])
 		if(myx==n-3 && myy==n-3)
 			flag=0;
 		mat[myx][myy]='1';
-		int savex=myx;
-		int savey=myy;
 		baptize(myx);
-		myy++;
+		myy--;
 		cout<<myx<<" "<<myy;
 		freopen("out.txt","w",stdout);
 		cout<<n;
@@ -461,7 +456,6 @@ int main(int argc, char *argv[])
 			}
 			nline;
 		}
-		cout<<savex<<" "<<savey;nline;
 		cout<<flag;
 		nline;
 		return 0;
