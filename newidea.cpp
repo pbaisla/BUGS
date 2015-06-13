@@ -92,7 +92,7 @@ int dfs(int level, std::vector<string> curr_mat, int myx, int myy, int opx, int 
 		nline;
 	}
 	cout<<"*********************";*/
-	if(level>10)
+	if(level>8)
 		return level;
 	if(level%2==0)
 	{
@@ -707,6 +707,8 @@ int main(int argc, char *argv[])
 			//cout<<dx[i]<<" "<<dy[i];nline;
 			if(issafe(mat,myx+dx[i],myy+dy[i],opx,opy))
 			{
+				//savex=myx+dx[i]; 
+				//	savey=myy+dy[i];
 				th[myx+dx[i]][myy+dy[i]]='1';
 				if((sv=dfs(1,th,myx+dx[i],myy+dy[i],opx,opy))>curr)
 				{
@@ -719,6 +721,8 @@ int main(int argc, char *argv[])
 			}
 		}
 	}
+
+	cout<<savex+1<<" "<<savey+1;nline;
 
 	freopen("out.txt","w",stdout);
 	mat[savex][savey]='1';
