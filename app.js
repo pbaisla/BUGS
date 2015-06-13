@@ -1,5 +1,6 @@
 var express = require('express');
 var logger = require('morgan');
+var spawn = require('child_process').spawn;
 
 var app = express();
 
@@ -27,6 +28,19 @@ app.get('/start', function (req, res) {
     console.log("opponent_pos = " + opponent_pos);
     console.log("gridSize = " + gridSize);
 
+    var proc = spawn(
+        'bin/game', 
+        ["start", my_pos[0], my_pos[1], opponent_pos[0], opponent_pos[1], gridSize]
+    );
+
+    proc.on('error', function(err) {
+        console.log('error ' + err);
+    });
+
+    proc.on('close', function(code) {
+        console.log('process exit code ' + code);
+    });
+
     res.json({
         "ok": true
     });
@@ -40,8 +54,30 @@ app.get('/play', function (req, res) {
 
     console.log("opponent_move = " + opponent_move);
 
-    res.json({
-        "m": "1|2" // TEMPORARILY HARDCODED
+    var proc = spawn('bin/game', ["play", opponent_move[0], opponent_move[1]]);
+
+    proc.stdout.setEncoding('utf8');
+
+    proc.stdout.on('data', function(outputData) {
+
+        console.log("outputData = " + outputData);
+
+        my_move = outputData.trim().split(" ").join('|');
+
+        console.log("my_move = " + my_move);
+
+        res.json({
+            "m": my_move
+        });
+
+    });
+
+    proc.on('error', function(err) {
+        console.log('error ' + err);
+    });
+
+    proc.on('close', function(code) {
+        console.log('process exit code ' + code);
     });
 
 });
