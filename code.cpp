@@ -74,8 +74,18 @@ int rec(int level, std::vector<string> curr_mat, int myx, int myy, int opx, int 
 	
 	//std::vector<string> th = curr_mat;
 	//cout<<level;nline;
+
 	int ret;
-	int j;
+	int j, i;
+	/*cout<<"*********************";
+	cout<<level<<" : ";
+	nline;
+	fl(i,0,n)
+	{
+		cout<<curr_mat[i];
+		nline;
+	}
+	cout<<"*********************";*/
 	if(level>10)
 		return 0;
 	if(level%2==0)
@@ -301,6 +311,8 @@ int main(int argc, char *argv[])
 
 	freopen("out.txt","r",stdin);
 
+	//freopen("move.txt","w",stdout);
+
 	scan(n);
 
 	fl(i,0,n)
@@ -343,11 +355,14 @@ int main(int argc, char *argv[])
 		}
 	}
 
+	std::vector<string> th=mat;
+
 	fl(i,0,8)
 	{
 		if(issafe(mat,myx+dx[i],myy+dy[i],opx,opy))
 		{
-			if(rec(1,mat,myx+dx[i],myy+dy[i],opx,opy)==1)
+			th[myx+dx[i]][myy+dy[i]]='1';
+			if(rec(1,th,myx+dx[i],myy+dy[i],opx,opy)==1)
 			{
 				//freopen("move.txt","w",stdout);
 				savex=myx+dx[i]; savey=myy+dy[i];
@@ -357,6 +372,7 @@ int main(int argc, char *argv[])
 				cout<<myx<<" "<<myy+dy[i]+1;
 				break;
 			}
+			th[myx+dx[i]][myy+dy[i]]='0';
 		}
 	}
 
