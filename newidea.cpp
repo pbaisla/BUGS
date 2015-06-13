@@ -22,6 +22,9 @@ using namespace std;
 #define ll long long int
 #define u64 unsigned long long int
 
+#define LEVELDFS 5
+#define LEVELREC 10
+
 #define PB push_back
 #define SZ size
 #define MP make_pair
@@ -92,7 +95,7 @@ int dfs(int level, std::vector<string> curr_mat, int myx, int myy, int opx, int 
 		nline;
 	}
 	cout<<"*********************";*/
-	if(level>8)
+	if(level>LEVELDFS)
 		return level;
 	if(level%2==0)
 	{
@@ -270,7 +273,7 @@ int rec(int level, std::vector<string> curr_mat, int myx, int myy, int opx, int 
 		nline;
 	}
 	cout<<"*********************";*/
-	if(level>10)
+	if(level>LEVELREC)
 		return 0;
 	if(level%2==0)
 	{
@@ -720,9 +723,10 @@ int main(int argc, char *argv[])
 				th[myx+dx[i]][myy+dy[i]]='0';
 			}
 		}
+		cout<<savex+1<<" "<<savey+1;nline;
 	}
 
-	cout<<savex+1<<" "<<savey+1;nline;
+	
 
 	freopen("out.txt","w",stdout);
 	mat[savex][savey]='1';
