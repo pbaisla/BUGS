@@ -1,0 +1,22 @@
+{
+  "name": "unicommerce-hackathon",
+  "version": "1.0.0",
+  "description": "A game AI built for the unicommerce hackathon",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "BUGS",
+  "dependencies": {
+    "express": "^4.12.4"
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pbaisla/BUGS.git"
+  },
+  "bugs": {
+    "url": "https://github.com/pbaisla/BUGS/issues"
+  },
+  "homepage": "https://github.com/pbaisla/BUGS#readme"
+}
