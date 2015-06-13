@@ -63,7 +63,7 @@ int issafe(std::vector<string> curr_mat, int myx, int myy, int opx, int opy)	//n
 	int i;
 	fl(i,0,8)
 	{
-		if(isvalid(curr_mat,myx+dx[i],myy+dy[i]) && opx==myx+dx[i] && opy==myy+dy[i])
+		if(isonboard(myx+dx[i],myy+dy[i]) && opx==myx+dx[i] && opy==myy+dy[i])
 			return 0;
 	}
 	return 1;
@@ -75,7 +75,8 @@ int rec(int level, std::vector<string> curr_mat, int myx, int myy, int opx, int 
 	//std::vector<string> th = curr_mat;
 	//cout<<level;nline;
 	int ret;
-	if(level>12)
+	int j;
+	if(level>10)
 		return 0;
 	if(level%2==0)
 	{
@@ -86,6 +87,51 @@ int rec(int level, std::vector<string> curr_mat, int myx, int myy, int opx, int 
 			if(isonboard(myx+dx[i],myy+dy[i]) && myx+dx[i]==opx && myy+dy[i]==opy)
 				return 1;
 		}
+
+		fl(i,0,n)
+		{
+			int caprow=1;
+			fl(j,0,n)
+			{
+				if(mat[i][j]!='2')
+				{
+					caprow=0;
+					break;
+				}
+			}
+			if(caprow==1)
+			{
+				if(myx>=0 && myx<caprow && caprow<n-1-caprow )
+				{
+					return 0;
+				}
+				if(myx>caprow && myx<n && n-1-caprow<caprow)
+					return 0;
+			}
+		}
+
+		fl(i,0,n)
+		{
+			int capcol=1;
+			fl(j,0,n)
+			{
+				if(mat[j][i]!='2')
+				{
+					capcol=0;
+					break;
+				}
+			}
+			if(capcol==1)
+			{
+				if(myy>=0 && myy<capcol && capcol<n-1-capcol )
+				{
+					return 0;
+				}
+				if(myy>capcol && myy<n && n-1-capcol<capcol)
+					return 0;
+			}
+		}
+
 		fl(i,0,8)
 		{
 			if(issafe(curr_mat,myx+dx[i],myy+dy[i],opx,opy))
@@ -120,6 +166,51 @@ int rec(int level, std::vector<string> curr_mat, int myx, int myy, int opx, int 
 			if(isonboard(opx+dx[i],opy+dy[i]) && opx+dx[i]==myx && opy+dy[i]==myy)
 				return 0;
 		}
+
+		fl(i,0,n)
+		{
+			int caprow=1;
+			fl(j,0,n)
+			{
+				if(mat[i][j]!='1')
+				{
+					caprow=0;
+					break;
+				}
+			}
+			if(caprow==1)
+			{
+				if(opx>=0 && opx<caprow && caprow<n-1-caprow )
+				{
+					return 0;
+				}
+				if(opx>caprow && opx<n && n-1-caprow<caprow)
+					return 0;
+			}
+		}
+
+		fl(i,0,n)
+		{
+			int capcol=1;
+			fl(j,0,n)
+			{
+				if(mat[j][i]!='1')
+				{
+					capcol=0;
+					break;
+				}
+			}
+			if(capcol==1)
+			{
+				if(opy>=0 && opy<capcol && capcol<n-1-capcol )
+				{
+					return 0;
+				}
+				if(opy>capcol && opy<n && n-1-capcol<capcol)
+					return 0;
+			}
+		}
+
 		fl(i,0,8)
 		{
 			if(issafe(curr_mat,opx+dx[i],opy+dy[i],myx,myy))
@@ -246,7 +337,7 @@ int main(int argc, char *argv[])
 			myx=myx+dx[i];
 			baptize(myx);
 			myy++;
-			cout<<myx<<" "<<myy;
+			cout<<myx<<" "<<myy+dy[i];
 			nline;
 			return 0;
 		}
