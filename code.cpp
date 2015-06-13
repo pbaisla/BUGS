@@ -103,7 +103,7 @@ int rec(int level, std::vector<string> curr_mat, int myx, int myy, int opx, int 
 			int caprow=1;
 			fl(j,0,n)
 			{
-				if(mat[i][j]!='2')
+				if(mat[i][j]=='0' )
 				{
 					caprow=0;
 					break;
@@ -125,7 +125,7 @@ int rec(int level, std::vector<string> curr_mat, int myx, int myy, int opx, int 
 			int capcol=1;
 			fl(j,0,n)
 			{
-				if(mat[j][i]!='2')
+				if(mat[j][i]=='0')
 				{
 					capcol=0;
 					break;
@@ -182,7 +182,7 @@ int rec(int level, std::vector<string> curr_mat, int myx, int myy, int opx, int 
 			int caprow=1;
 			fl(j,0,n)
 			{
-				if(mat[i][j]!='1')
+				if(mat[i][j]=='0')
 				{
 					caprow=0;
 					break;
@@ -192,10 +192,10 @@ int rec(int level, std::vector<string> curr_mat, int myx, int myy, int opx, int 
 			{
 				if(opx>=0 && opx<caprow && caprow<n-1-caprow )
 				{
-					return 0;
+					return 1;
 				}
 				if(opx>caprow && opx<n && n-1-caprow<caprow)
-					return 0;
+					return 1;
 			}
 		}
 
@@ -204,7 +204,7 @@ int rec(int level, std::vector<string> curr_mat, int myx, int myy, int opx, int 
 			int capcol=1;
 			fl(j,0,n)
 			{
-				if(mat[j][i]!='1')
+				if(mat[j][i]=='0')
 				{
 					capcol=0;
 					break;
@@ -214,10 +214,10 @@ int rec(int level, std::vector<string> curr_mat, int myx, int myy, int opx, int 
 			{
 				if(opy>=0 && opy<capcol && capcol<n-1-capcol )
 				{
-					return 0;
+					return 1;
 				}
 				if(opy>capcol && opy<n && n-1-capcol<capcol)
-					return 0;
+					return 1;
 			}
 		}
 
@@ -380,6 +380,7 @@ int main(int argc, char *argv[])
 	{
 		fl(i,0,8)
 		{
+			cout<<dx[i]<<" "<<dy[i];nline;
 			if(issafe(mat,myx+dx[i],myy+dy[i],opx,opy))
 			{
 				savex=myx+dx[i];
