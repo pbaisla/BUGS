@@ -275,8 +275,11 @@ int main(int argc, char *argv[])
 		opy--;
 		myy--;
 
-		baptize(myx);
-		baptize(opx);
+		//baptize(myx);
+		//baptize(opx);
+
+		myx--;
+		opx--;
 
 		freopen("out.txt","w",stdout);
 
@@ -329,7 +332,8 @@ int main(int argc, char *argv[])
 	
 	opy--;
 
-	baptize(opx);
+	//baptize(opx);
+	opx--;
 
 	int myx, myy;
 
@@ -353,7 +357,8 @@ int main(int argc, char *argv[])
 		{
 			//freopen("move.txt","w",stdout);
 			myx=myx+dx[i];
-			baptize(myx);
+			//baptize(myx);
+			myx++;
 			myy++;
 			cout<<myx<<" "<<myy+dy[i];
 			nline;
@@ -420,7 +425,8 @@ int main(int argc, char *argv[])
 		mat[myx][myy]='1';
 		int savex=myx;
 		int savey=myy;
-		baptize(myx);
+		//baptize(myx);
+		myx++;
 		myy++;
 		cout<<myx<<" "<<myy;
 		freopen("out.txt","w",stdout);
@@ -447,7 +453,8 @@ int main(int argc, char *argv[])
 		mat[myx][myy]='1';
 		int savex=myx;
 		int savey=myy;
-		baptize(myx);
+		//baptize(myx);
+		myx++;
 		myy++;
 		cout<<myx<<" "<<myy;
 		freopen("out.txt","w",stdout);
@@ -477,7 +484,8 @@ int main(int argc, char *argv[])
 				//freopen("move.txt","w",stdout);
 				savex=myx+dx[i]; savey=myy+dy[i];
 				myx=myx+dx[i];
-				baptize(myx);
+				//baptize(myx);
+				myx++;
 				
 				cout<<myx<<" "<<myy+dy[i]+1;
 				break;
@@ -496,7 +504,8 @@ int main(int argc, char *argv[])
 				savex=myx+dx[i];
 				savey=myy+dy[i];
 				myx=myx+dx[i];
-				baptize(myx);
+				//baptize(myx);
+				myx++;
 				cout<<myx<<" "<<myy+dy[i]+1;
 				break;
 			}

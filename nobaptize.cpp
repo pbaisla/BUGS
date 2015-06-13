@@ -34,6 +34,12 @@ std::vector<string> mat;
 int thisopx, thisopy;	//to store the this move of oponent;
 
 //Moves for x & y
+int dx1[]={+1,+1,0,-1,-1,-1,0,+1};
+int dy1[]={0,+1,+1,+1,0,-1,-1,-1};
+
+int dx2[]={-1,-1,0,+1,+1,+1,0,-1};
+int dy2[]={0,-1,-1,-1,0,+1,+1,+1};
+
 int dx[]={-1,-1,-1,0,0,+1,+1,+1};
 int dy[]={-1,0,+1,-1,+1,-1,0,+1};
 
@@ -315,6 +321,8 @@ int main(int argc, char *argv[])
 
 	freopen("out.txt","r",stdin);
 
+
+
 	//freopen("move.txt","w",stdout);
 
 	scan(n);
@@ -324,6 +332,23 @@ int main(int argc, char *argv[])
 		string str1;
 		cin>>str1;
 		mat.PB(str1);
+	}
+
+	if(mat[0][0]=='1')
+	{
+		fl(i,0,8)
+		{
+			dx[i]=dx1[i];
+			dy[i]=dy1[i];
+		}
+	}
+	if(mat[n-1][n-1]=='1')
+	{
+		fl(i,0,8)
+		{
+			dx[i]=dx2[i];
+			dy[i]=dy2[i];
+		}
 	}
 
 	int opx=atoi(argv[2]);
