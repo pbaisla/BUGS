@@ -73,8 +73,9 @@ int rec(int level, std::vector<string> curr_mat, int myx, int myy, int opx, int 
 {
 	
 	//std::vector<string> th = curr_mat;
+	//cout<<level;nline;
 	int ret;
-	if(level>10)
+	if(level>12)
 		return 0;
 	if(level%2==0)
 	{
@@ -278,7 +279,7 @@ int main(int argc, char *argv[])
 				savey=myy+dy[i];
 				myx=myx+dx[i];
 				baptize(myx);
-				cout<<myx<<" "<<myy+dy[i]+!;
+				cout<<myx<<" "<<myy+dy[i]+1;
 				break;
 			}
 		}
