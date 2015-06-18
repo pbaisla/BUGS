@@ -39,7 +39,7 @@ int dy[]={-1,0,+1,-1,+1,-1,0,+1};
 
 void baptize(int &x)
 {
-	x=n-x;
+	x;
 }
 
 int isonboard(int x, int y)
@@ -86,7 +86,7 @@ int rec(int level, std::vector<string> curr_mat, int myx, int myy, int opx, int 
 		nline;
 	}
 	cout<<"*********************";*/
-	if(level>12)
+	if(level>10)
 		return 0;
 	if(level%2==0)
 	{
@@ -275,8 +275,11 @@ int main(int argc, char *argv[])
 		opy--;
 		myy--;
 
-		baptize(myx);
-		baptize(opx);
+		//baptize(myx);
+		//baptize(opx);
+
+		myx--;
+		opx--;
 
 		freopen("out.txt","w",stdout);
 
@@ -304,6 +307,7 @@ int main(int argc, char *argv[])
 		}
 
 		cout<<myx<<" "<<myy;nline;
+		cout<<1;nline;
 
 		return 0;
 
@@ -328,11 +332,17 @@ int main(int argc, char *argv[])
 	
 	opy--;
 
-	baptize(opx);
+	//baptize(opx);
+	opx--;
 
 	int myx, myy;
 
 	scan(myx); scan(myy);
+
+	int flag;
+
+	scan(flag);
+
 
 	thisopx=opx;
 	thisopy=opy;
@@ -347,7 +357,8 @@ int main(int argc, char *argv[])
 		{
 			//freopen("move.txt","w",stdout);
 			myx=myx+dx[i];
-			baptize(myx);
+			//baptize(myx);
+			myx++;
 			myy++;
 			cout<<myx<<" "<<myy+dy[i];
 			nline;
@@ -356,6 +367,112 @@ int main(int argc, char *argv[])
 	}
 
 	std::vector<string> th=mat;
+
+	if(min(abs(myx-opx) , abs(myy-opy) ) <=2 )
+	{
+		flag=0;
+	}
+
+	if(flag==1)
+	{
+		if(mat[0][0]=='1')
+		{
+			if(mat[0][1]!='1')
+			{
+				mat[0][1]='1';
+				myx=0;
+				myy=1;
+			}
+			else
+			{
+				if(mat[myx][myy-1]=='1')
+				{
+					myx=myx+1;
+				}
+				else
+				{
+					myy=myy+1;
+				}
+			}
+		}
+		else if(mat[n-1][n-1]=='1')
+		{
+			if(mat[n-1][n-2]!='1')
+			{
+				mat[n-1][n-2]='1';
+				myx=n-1;
+				myy=n-2;
+			}
+			else
+			{
+				if(mat[myx][myy+1]=='1')
+				{
+					myx--;
+				}
+				else
+				{
+					myy--;
+				}
+			}
+		}
+
+	}
+
+	if(mat[0][0]=='1' && flag==1)
+	{
+		if(myx==2 && myy==2)
+			flag=0;
+		mat[myx][myy]='1';
+		int savex=myx;
+		int savey=myy;
+		//baptize(myx);
+		myx++;
+		myy++;
+		cout<<myx<<" "<<myy;
+		freopen("out.txt","w",stdout);
+		cout<<n;
+		nline;
+		fl(i,0,n)
+		{
+			fl(j,0,n)
+			{
+				cout<<mat[i][j];
+			}
+			nline;
+		}
+		cout<<savex<<" "<<savey;nline;
+		cout<<flag;
+		nline;
+		return 0;
+	}
+
+	if(mat[n-1][n-1]=='1' && flag==1)
+	{
+		if(myx==n-3 && myy==n-3)
+			flag=0;
+		mat[myx][myy]='1';
+		int savex=myx;
+		int savey=myy;
+		//baptize(myx);
+		myx++;
+		myy++;
+		cout<<myx<<" "<<myy;
+		freopen("out.txt","w",stdout);
+		cout<<n;
+		nline;
+		fl(i,0,n)
+		{
+			fl(j,0,n)
+			{
+				cout<<mat[i][j];
+			}
+			nline;
+		}
+		cout<<savex<<" "<<savey;nline;
+		cout<<flag;
+		nline;
+		return 0;
+	}
 
 	fl(i,0,8)
 	{
@@ -367,7 +484,8 @@ int main(int argc, char *argv[])
 				//freopen("move.txt","w",stdout);
 				savex=myx+dx[i]; savey=myy+dy[i];
 				myx=myx+dx[i];
-				baptize(myx);
+				//baptize(myx);
+				myx++;
 				
 				cout<<myx<<" "<<myy+dy[i]+1;
 				break;
@@ -386,7 +504,8 @@ int main(int argc, char *argv[])
 				savex=myx+dx[i];
 				savey=myy+dy[i];
 				myx=myx+dx[i];
-				baptize(myx);
+				//baptize(myx);
+				myx++;
 				cout<<myx<<" "<<myy+dy[i]+1;
 				break;
 			}
@@ -407,6 +526,7 @@ int main(int argc, char *argv[])
 	}
 
 	cout<<savex<<" "<<savey; nline;
+	cout<<flag;nline;
 
 	//rec(0,mat);
 

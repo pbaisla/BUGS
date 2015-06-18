@@ -11,6 +11,7 @@ app.use(logger('dev'));
 // PING - Check if server is up
 app.get('/ping', function (req, res) {
 
+    console.log("remote ip = " + req.connection.remoteAddress);
     res.json({
         "ok": true
     });
@@ -27,6 +28,7 @@ app.get('/start', function (req, res) {
     console.log("my_pos = " + my_pos);
     console.log("opponent_pos = " + opponent_pos);
     console.log("gridSize = " + gridSize);
+    console.log("remote ip = " + req.connection.remoteAddress);
 
     var proc = spawn(
         'bin/game', 
@@ -52,6 +54,7 @@ app.get('/play', function (req, res) {
 
     var opponent_move = req.query.m.split('|');
 
+    console.log("remote ip = " + req.connection.remoteAddress);
     console.log("opponent_move = " + opponent_move);
 
     var proc = spawn('bin/game', ["play", opponent_move[0], opponent_move[1]]);
@@ -69,6 +72,12 @@ app.get('/play', function (req, res) {
         res.json({
             "m": my_move
         });
+
+    });
+
+    proc.stderr.on("data", function(outputData) {
+
+        console.log("err = " + outputData);
 
     });
 

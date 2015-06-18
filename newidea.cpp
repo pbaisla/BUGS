@@ -22,8 +22,8 @@ using namespace std;
 #define ll long long int
 #define u64 unsigned long long int
 
-#define LEVELDFS 5
-#define LEVELREC 10
+#define LEVELDFS 6
+#define LEVELREC 9
 
 #define PB push_back
 #define SZ size
@@ -43,8 +43,8 @@ int dy1[]={0,+1,+1,+1,0,-1,-1,-1};
 int dx2[]={-1,-1,0,+1,+1,+1,0,-1};
 int dy2[]={0,-1,-1,-1,0,+1,+1,+1};
 
-int dx[]={-1,-1,-1,0,0,+1,+1,+1};
-int dy[]={-1,0,+1,-1,+1,-1,0,+1};
+int dx[]={-1,-1,0,0,+1,+1,+1,-1};
+int dy[]={0,+1,-1,+1,-1,0,+1,-1};
 
 void baptize(int &x)
 {
@@ -583,10 +583,10 @@ int main(int argc, char *argv[])
 	{
 		if(mat[0][0]=='1')
 		{
-			if(mat[0][1]!='1')
+			if(mat[1][1]!='1')
 			{
-				mat[0][1]='1';
-				myx=0;
+				mat[1][1]='1';
+				myx=1;
 				myy=1;
 			}
 			else
@@ -603,10 +603,10 @@ int main(int argc, char *argv[])
 		}
 		else if(mat[n-1][n-1]=='1')
 		{
-			if(mat[n-1][n-2]!='1')
+			if(mat[n-2][n-2]!='1')
 			{
-				mat[n-1][n-2]='1';
-				myx=n-1;
+				mat[n-2][n-2]='1';
+				myx=n-2;
 				myy=n-2;
 			}
 			else
@@ -626,8 +626,8 @@ int main(int argc, char *argv[])
 
 	if(mat[0][0]=='1' && flag==1)
 	{
-		if(myx==2 && myy==2)
-			flag=0;
+		//if(myx==2 && myy==2)
+		//	flag=0;
 		mat[myx][myy]='1';
 		int savex=myx;
 		int savey=myy;
@@ -654,8 +654,8 @@ int main(int argc, char *argv[])
 
 	if(mat[n-1][n-1]=='1' && flag==1)
 	{
-		if(myx==n-3 && myy==n-3)
-			flag=0;
+		//if(myx==n-3 && myy==n-3)
+		//	flag=0;
 		mat[myx][myy]='1';
 		int savex=myx;
 		int savey=myy;
@@ -716,9 +716,19 @@ int main(int argc, char *argv[])
 				if((sv=dfs(1,th,myx+dx[i],myy+dy[i],opx,opy))>curr)
 				{
 					//freopen("move.txt","w",stdout);
+					if(savex!=-1 && savey!=-1)
+					{
+						int newdist=min( abs(opx-myx+dx[i]), abs(opy-myy+dy[i]) );
+						int puranadist = min( abs(opx-savex), abs(opy-savey) );
+						if(newdist<puranadist)
+						{
+							continue;
+						}
+					}
 					savex=myx+dx[i]; 
 					savey=myy+dy[i];
 					curr=sv;
+					
 				}
 				th[myx+dx[i]][myy+dy[i]]='0';
 			}
